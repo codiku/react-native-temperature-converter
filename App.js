@@ -1,11 +1,19 @@
+import { ImageBackground, Text, TextInput } from "react-native";
+
+import { InputTemperature } from "./components/InputTemperature/InputTemperature";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text } from "react-native";
 import { s } from "./App.style";
 
 export default function App() {
   return (
-    <SafeAreaView style={s.container}>
-      <Text>Starter</Text>
-    </SafeAreaView>
+    <ImageBackground
+      source={{ uri: "https://reactjs.org/logo-og.png" }}
+      resizeMode="cover"
+      style={s.bgImage}
+    >
+      <SafeAreaView>
+        <InputTemperature />
+      </SafeAreaView>
+    </ImageBackground>
   );
 }

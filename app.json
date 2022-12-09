@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-native-introduction",
-    "slug": "react-native-introduction",
+    "name": "react-native-temperature-converter",
+    "slug": "react-native-temperature-converter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -29,10 +27,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "69ca147b-23ab-438c-9b7e-279383bb6dbd"
-      }
-    }
+    "extra": {}
   }
 }
