@@ -1,6 +1,6 @@
 import { TextInput } from "react-native";
 import { s } from "./InputTemperature.style";
 
-export function TemperatureInput() {
+export function InputTemperature() {
   return <TextInput keyboardType="numeric" style={s.input} />;
 }
