@@ -11,10 +11,12 @@ import { useState } from "react";
 
 export default function App() {
   const [currentUnit, setCurrentUnit] = useState(UNITS.celcius);
+  const [inputValue, setInputValue] = useState("");
 
   function toggleUnit() {
     setCurrentUnit(getOppositeUnit(currentUnit));
   }
+  console.log(inputValue);
   return (
     <ImageBackground
       // source={{ uri: "https://reactjs.org/logo-og.png" }}
@@ -25,11 +27,18 @@ export default function App() {
       <View style={s.container}>
         <View style={s.temperatureContainer}>
           <TemperatureDisplay
-            value={convertTemperature(32, UNITS.celcius)}
+            value={
+              inputValue
+                ? convertTemperature(
+                    Number.parseFloat(inputValue),
+                    getOppositeUnit(currentUnit)
+                  ).toFixed(1)
+                : ""
+            }
             unit={getOppositeUnit(currentUnit)}
           />
         </View>
-        <InputTemperature unit={currentUnit} />
+        <InputTemperature onChangeText={setInputValue} unit={currentUnit} />
         <View style={s.buttonContainer}>
           <ButtonConvert
             text={"Convertir en " + UNIT_LABELS[currentUnit]}
