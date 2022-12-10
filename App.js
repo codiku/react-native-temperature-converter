@@ -16,44 +16,35 @@ import { useState } from "react";
 
 export default function App() {
   const [currentUnit, setCurrentUnit] = useState(UNITS.celcius);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("0");
 
   function toggleUnit() {
     setCurrentUnit(getOppositeUnit(currentUnit));
   }
-  console.log(inputValue);
   return (
     <ImageBackground
       source={
-        inputValue &&
-        (isIceTemperature(inputValue, currentUnit)
+        isIceTemperature(inputValue, currentUnit)
           ? coldBackground
-          : hotBackground)
+          : hotBackground
       }
       resizeMode="cover"
-      style={[
-        s.imgContainer,
-        { backgroundColor: inputValue === "" && "black" },
-      ]}
+      style={s.imgContainer}
     >
       <View style={s.container}>
         <View style={s.temperatureContainer}>
           <TemperatureDisplay
-            value={
-              inputValue
-                ? convertTemperature(
-                    Number.parseFloat(inputValue),
-                    getOppositeUnit(currentUnit)
-                  ).toFixed(1)
-                : ""
-            }
+            value={convertTemperature(
+              Number.parseFloat(inputValue),
+              getOppositeUnit(currentUnit)
+            ).toFixed(1)}
             unit={getOppositeUnit(currentUnit)}
           />
         </View>
         <InputTemperature
           onChangeText={setInputValue}
           unit={currentUnit}
-          value={inputValue}
+          defaultValue={inputValue}
         />
         <View style={s.buttonContainer}>
           <ButtonConvert
