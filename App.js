@@ -3,10 +3,13 @@ import { ImageBackground, View } from "react-native";
 import { ButtonConvert } from "./components/ButtonConvert/ButtonConvert";
 import { InputTemperature } from "./components/InputTemperature/InputTemperature";
 import { TemperatureDisplay } from "./components/TemperatureDisplay/TemperatureDisplay";
-import hotBackground from "./assets/hot.png";
+import { UNITS } from "./constants";
+import hotBackground from "./assets/images/hot.png";
 import { s } from "./App.style";
+import { useState } from "react";
 
 export default function App() {
+  const [currentUnit, setCurrentUnit] = useState(UNITS.celcius);
   return (
     <ImageBackground
       // source={{ uri: "https://reactjs.org/logo-og.png" }}

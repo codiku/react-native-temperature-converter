@@ -1,6 +1,12 @@
-import { TextInput } from "react-native";
+import { Text, TextInput, View } from "react-native";
+
 import { s } from "./InputTemperature.style";
 
 export function InputTemperature() {
-  return <TextInput keyboardType="numeric" style={s.input} />;
+  return (
+    <View>
+      <TextInput keyboardType="numeric" style={s.input} />
+      <Text style={s.unit}>°F</Text>
+    </View>
+  );
 }
