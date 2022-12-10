@@ -1,10 +1,15 @@
 import { ImageBackground, View } from "react-native";
 import { UNITS, UNIT_LABELS } from "./constants";
-import { convertTemperature, getOppositeUnit } from "./services/temperature";
+import {
+  convertTemperature,
+  getOppositeUnit,
+  isIceTemperature,
+} from "./services/temperature";
 
 import { ButtonConvert } from "./components/ButtonConvert/ButtonConvert";
 import { InputTemperature } from "./components/InputTemperature/InputTemperature";
 import { TemperatureDisplay } from "./components/TemperatureDisplay/TemperatureDisplay";
+import coldBackground from "./assets/cold.png";
 import hotBackground from "./assets/hot.png";
 import { s } from "./App.style";
 import { useState } from "react";
@@ -19,10 +24,17 @@ export default function App() {
   console.log(inputValue);
   return (
     <ImageBackground
-      // source={{ uri: "https://reactjs.org/logo-og.png" }}
-      source={hotBackground}
+      source={
+        inputValue &&
+        (isIceTemperature(inputValue, currentUnit)
+          ? coldBackground
+          : hotBackground)
+      }
       resizeMode="cover"
-      style={s.imgContainer}
+      style={[
+        s.imgContainer,
+        { backgroundColor: inputValue === "" && "black" },
+      ]}
     >
       <View style={s.container}>
         <View style={s.temperatureContainer}>
@@ -38,7 +50,11 @@ export default function App() {
             unit={getOppositeUnit(currentUnit)}
           />
         </View>
-        <InputTemperature onChangeText={setInputValue} unit={currentUnit} />
+        <InputTemperature
+          onChangeText={setInputValue}
+          unit={currentUnit}
+          value={inputValue}
+        />
         <View style={s.buttonContainer}>
           <ButtonConvert
             text={"Convertir en " + UNIT_LABELS[currentUnit]}
