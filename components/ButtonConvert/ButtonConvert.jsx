@@ -2,10 +2,10 @@ import { Text, TextInput, TouchableOpacity } from "react-native";
 
 import { s } from "./ButtonConvert.style";
 
-export function ButtonConvert() {
+export function ButtonConvert({ onPress, text }) {
   return (
-    <TouchableOpacity>
-      <Text>Convertir en Faranheit</Text>
+    <TouchableOpacity onPress={onPress} style={s.btn}>
+      <Text style={s.btnText}>{text}</Text>
     </TouchableOpacity>
   );
 }
