@@ -4,7 +4,7 @@ import { ButtonConvert } from "./components/ButtonConvert/ButtonConvert";
 import { InputTemperature } from "./components/InputTemperature/InputTemperature";
 import { TemperatureDisplay } from "./components/TemperatureDisplay/TemperatureDisplay";
 import { UNITS } from "./constants";
-import hotBackground from "./assets/images/hot.png";
+import hotBackground from "./assets/hot.png";
 import { s } from "./App.style";
 import { useState } from "react";
 
