@@ -12,32 +12,47 @@ import { TemperatureDisplay } from "./components/TemperatureDisplay/TemperatureD
 import coldBackground from "./assets/cold.png";
 import hotBackground from "./assets/hot.png";
 import { s } from "./App.style";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const [currentUnit, setCurrentUnit] = useState(UNITS.celcius);
   const [inputValue, setInputValue] = useState("0");
+  const [currentBackground, setCurrentBackground] = useState();
+
+  useEffect(() => {
+    const temperatureAsFloat = Number.parseFloat(inputValue);
+    if (!isNaN(temperatureAsFloat)) {
+      const isColdBackground = isIceTemperature(
+        temperatureAsFloat,
+        currentUnit
+      );
+      setCurrentBackground(isColdBackground ? coldBackground : hotBackground);
+    }
+  }, [inputValue]);
 
   function toggleUnit() {
     setCurrentUnit(getOppositeUnit(currentUnit));
   }
+
+  function getConvertedTemperature(value) {
+    const temperatureAsFloat = Number.parseFloat(value);
+    return isNaN(temperatureAsFloat)
+      ? ""
+      : convertTemperature(
+          temperatureAsFloat,
+          getOppositeUnit(currentUnit)
+        ).toFixed(1);
+  }
   return (
     <ImageBackground
-      source={
-        isIceTemperature(inputValue, currentUnit)
-          ? coldBackground
-          : hotBackground
-      }
+      source={currentBackground}
       resizeMode="cover"
       style={s.imgContainer}
     >
       <View style={s.container}>
         <View style={s.temperatureContainer}>
           <TemperatureDisplay
-            value={convertTemperature(
-              Number.parseFloat(inputValue),
-              getOppositeUnit(currentUnit)
-            ).toFixed(1)}
+            value={getConvertedTemperature(inputValue)}
             unit={getOppositeUnit(currentUnit)}
           />
         </View>
