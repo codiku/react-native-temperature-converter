@@ -1,19 +1,15 @@
 import { StyleSheet } from "react-native";
 
-export const s = StyleSheet.create({
-  imgContainer: {
+const s = StyleSheet.create({
+  container: {
     flex: 1,
-    padding: 20,
     justifyContent: "center",
   },
-  container: {
-    justifyContent: "space-evenly",
+  workspace: {
     height: 450,
-  },
-  temperatureContainer: {
     alignItems: "center",
-  },
-  buttonContainer: {
-    alignItems: "center",
+    justifyContent: "space-evenly",
   },
 });
+
+export { s };

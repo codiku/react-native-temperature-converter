@@ -1,29 +1,19 @@
-import { ImageBackground, View } from "react-native";
-
-import { ButtonConvert } from "./components/ButtonConvert/ButtonConvert";
-import { InputTemperature } from "./components/InputTemperature/InputTemperature";
-import { TemperatureDisplay } from "./components/TemperatureDisplay/TemperatureDisplay";
-import { UNITS } from "./constants";
-import hotBackground from "./assets/hot.png";
+import { ImageBackground, Text, View } from "react-native";
 import { s } from "./App.style";
-import { useState } from "react";
+import hotBackground from "./assets/hot.png";
 
 export default function App() {
-  const [currentUnit, setCurrentUnit] = useState(UNITS.celcius);
   return (
-    <ImageBackground
-      // source={{ uri: "https://reactjs.org/logo-og.png" }}
-      source={hotBackground}
-      resizeMode="cover"
-      style={s.imgContainer}
-    >
-      <View style={s.container}>
-        <View style={s.temperatureContainer}>
-          <TemperatureDisplay />
+    <ImageBackground source={hotBackground} style={s.container}>
+      <View style={s.workspace}>
+        <View>
+          <Text>Temperature</Text>
         </View>
-        <InputTemperature />
-        <View style={s.buttonContainer}>
-          <ButtonConvert />
+        <View>
+          <Text>Input</Text>
+        </View>
+        <View>
+          <Text>Button</Text>
         </View>
       </View>
     </ImageBackground>
