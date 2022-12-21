@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ImageBackground, Text, View } from "react-native";
 import { s } from "./App.style";
 import hotBackground from "./assets/hot.png";
+import { ButtonConvert } from "./components/ButtonConvert/ButtonConvert";
 import { InputTemperature } from "./components/InputTemperature/InputTemperature";
 import { TemperatureDisplay } from "./components/TemperatureDisplay/TemperatureDisplay";
 import { DEFAULT_TEMPERATURE, DEFAULT_UNIT, UNITS } from "./constant";
@@ -32,9 +33,15 @@ export default function App() {
         <InputTemperature
           onChangeText={setInputValue}
           defaultValue={DEFAULT_TEMPERATURE}
+          unit={currentUnit}
         />
         <View>
-          <Text>Button</Text>
+          <ButtonConvert
+            onPress={() => {
+              setCurrentUnit(oppositeUnit);
+            }}
+            unit={currentUnit}
+          />
         </View>
       </View>
     </ImageBackground>
