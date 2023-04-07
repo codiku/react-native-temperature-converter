@@ -7,7 +7,8 @@ export function InputTemperature({ defaultValue }) {
       <TextInput
         style={s.input}
         placeholder="Tappe une température"
-        keyboardType="numeric"
+        keyboardType="decimal-pad"
+        returnKeyType="done"
         maxLength={4}
         defaultValue={defaultValue}
       />
